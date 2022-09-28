@@ -12,6 +12,18 @@ function addItem(e) {
 
   items.push(item);
   this.reset(); // reset method is used to clear all the values of the form elements. It does not require any parameter values and also does not return any value.
+  populateList(items, itemsList);
+}
+
+function populateList(plates = [], platesList) {
+  platesList.innerHTML = plates.map((plate, i) => {
+    return `
+         <li>
+           <input type = "checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''}/>
+           <label for="item${i}">${plate.text}</label>
+         </li>
+       `;
+  }).join(""); //convert it into string
 }
 
 
