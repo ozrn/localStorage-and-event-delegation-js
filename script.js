@@ -1,6 +1,6 @@
 const addItems = document.querySelector('.add-items'); // select form element
 const itemsList = document.querySelector('.plates'); // select ul
-const items = JSON.parse(localStorage.getItem('items')) || [] ; // try to get items from localStorage, if it's not there, it's going to fall back to an empty array.
+const items = JSON.parse(localStorage.getItem('items')) || []; // try to get items from localStorage, if it's not there, it's going to fall back to an empty array.
 
 function addItem(e) {
   e.preventDefault(); // This method cancels the event if it is cancelable, meaning that the default action that belongs to the event will not occur.
@@ -28,9 +28,12 @@ function populateList(plates = [], platesList) {
   }).join(""); //convert it into string
 }
 
-function toggleDone(e){
-  if(!e.target.matches('input')) return; // skip this unless it's an input!
-  console.log(e.target);
+function toggleDone(e) {
+  if (!e.target.matches('input')) return; // skip this unless it's an input!
+  const indexOfItem = e.target.dataset.index;
+  items[indexOfItem].done = !items[indexOfItem].done; //this is just flip-flopping between true and false 1) change the property
+  localStorage.setItem('items', JSON.stringify(items)); // 2) store that in localStorage
+  populateList(items, itemsList); // 3) visiaully update what's on the page
 }
 
 
