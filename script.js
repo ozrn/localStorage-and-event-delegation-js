@@ -28,9 +28,17 @@ function populateList(plates = [], platesList) {
   }).join(""); //convert it into string
 }
 
+function toggleDone(e){
+  if(!e.target.matches('input')) return; // skip this unless it's an input!
+  console.log(e.target);
+}
+
 
 addItems.addEventListener('submit', addItem);
 // The submit event fires when the user clicks a submit button (<button> or <input type="submit">)
 //or presses Enter while editing a field (e.g. <input type="text">) in a form. The event is not sent to the form
 //when calling the form.submit() method directly.
+itemsList.addEventListener('click', toggleDone); // event delegation is basically a pattern to handle events efficiently.
+//Instead of adding an event listener to each and every similar element, we can add an event listener to a parent element
+//and call an event on a particular target using the target property of the event object.
 populateList(items, itemsList);
