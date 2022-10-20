@@ -1,6 +1,6 @@
 const addItems = document.querySelector('.add-items'); // select form element
 const itemsList = document.querySelector('.plates'); // select ul
-const items = [];
+const items = JSON.parse(localStorage.getItem('items')) || [] ; // try to get items from localStorage, if it's not there, it's going to fall back to an empty array.
 
 function addItem(e) {
   e.preventDefault(); // This method cancels the event if it is cancelable, meaning that the default action that belongs to the event will not occur.
@@ -33,3 +33,4 @@ addItems.addEventListener('submit', addItem);
 // The submit event fires when the user clicks a submit button (<button> or <input type="submit">)
 //or presses Enter while editing a field (e.g. <input type="text">) in a form. The event is not sent to the form
 //when calling the form.submit() method directly.
+populateList(items, itemsList);
