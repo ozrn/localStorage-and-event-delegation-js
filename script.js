@@ -11,8 +11,10 @@ function addItem(e) {
   };
 
   items.push(item);
-  this.reset(); // reset method is used to clear all the values of the form elements. It does not require any parameter values and also does not return any value.
   populateList(items, itemsList);
+  localStorage.setItem('items', JSON.stringify(items)); // store data in localStorage
+  this.reset(); // reset method is used to clear all the values of the form elements. It does not require any parameter values and also does not return any value.
+
 }
 
 function populateList(plates = [], platesList) {
